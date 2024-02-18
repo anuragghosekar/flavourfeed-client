@@ -1,0 +1,54 @@
+.user-recipes-container {
+  margin-top: 20px;
+}
+
+.user-recipes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.user-recipe {
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.recipe-image img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.recipe-actions {
+  margin-top: 10px;
+}
+
+.add-new-recipe-btn {
+  margin-top: 20px;
+}
+.recipe-actions button {
+  margin-right: 5px; /* Add spacing between buttons */
+  border: none;
+  border-radius: 5px;
+  padding: 3px 8px; /* Decrease button padding */
+  cursor: pointer;
+  font-size: 14px;
+  max-width: 100px; /* Set maximum width */
+  white-space: nowrap;
+}
+
+.recipe-actions .edit {
+  background-color: #2079d7a5; /* Blue color */
+  color: #fff; /* White text */
+}
+
+.recipe-actions .delete {
+  background-color: #dc3545; /* Red color */
+  color: #fff; /* White text */
+}
+
+.recipe-actions .view {
+  background-color: #28a745; /* Green color */
+  color: #fff; /* White text */
+}
+

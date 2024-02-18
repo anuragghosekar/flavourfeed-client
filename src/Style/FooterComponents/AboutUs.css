@@ -1,0 +1,21 @@
+/* AboutUs.css */
+
+#about-us {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  #about-us h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  #about-us p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }

@@ -1,0 +1,27 @@
+.recipes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Adjust the spacing between cards */
+}
+
+.recipe-card {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px; /* Adjust the width of each card */
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.view-button{
+  padding: 5px 10px; /* Adjust button padding for smaller size */
+  font-size: 14px;
+}
+.delete-button {
+  padding: 1px 2px; /* Adjust button padding for smaller size */
+  font-size: 14px; /* Adjust button font size */
+}

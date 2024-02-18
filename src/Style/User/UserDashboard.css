@@ -1,0 +1,27 @@
+/* UserDashboard.css */
+
+.navbar {
+    background-color: #fff; /* Background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow */
+  }
+  
+  .navbar-brand {
+    font-weight: bold; /* Make brand text bold */
+  }
+  
+  .navbar-toggler-icon {
+    border: none; /* Remove border from toggler icon */
+  }
+  
+  .navbar-nav .nav-link {
+    color: #333; /* Text color */
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #007bff; /* Hover color */
+  }
+  
+  .navbar-nav.ml-auto .nav-item {
+    margin-left: 10px; /* Adjust margin between items */
+  }
+  

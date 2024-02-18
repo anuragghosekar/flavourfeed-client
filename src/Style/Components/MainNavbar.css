@@ -1,0 +1,34 @@
+
+
+.navbar {
+  padding-top: 0; /* Remove default padding */
+  padding-bottom: 0; /* Remove default padding */
+  background-color: #D9EDBF ;
+}
+
+.main-div {
+  margin-bottom: 20px; /* Add some space below the navbar if needed */
+  
+}
+
+.nav__logo {
+  /* Custom styles for your logo */
+  position: absolute;
+  top: 0;
+  left: 5rem;
+  margin-top: 10px; /* Adjust as needed */
+  margin-left: 10px; /* Adjust as needed */
+}
+.nav-link {
+  font-size: 40px; /* Adjust the font size as needed */
+  margin-right: 15px;
+  color: #793a00;
+}
+.links{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 30px;
+  margin-right: 40px;
+
+}

@@ -1,0 +1,55 @@
+
+.main-div{
+      background-color: #ecedf1 ; 
+    }
+    
+   
+
+.navbar {
+  padding-top: 0; /* Remove default padding */
+  padding-bottom: 0; /* Remove default padding */
+}
+
+.main-div {
+  margin-bottom: 20px; /* Add some space below the navbar if needed */
+  background-color: #ecedf1 ; 
+}
+
+.nav__logo {
+  /* Custom styles for your logo */
+  position: absolute;
+  top: 0;
+  left: 5rem;
+  margin-top: 10px; /* Adjust as needed */
+  margin-left: 10px; /* Adjust as needed */
+}
+.nav-link {
+  font-size: 15px; /* Adjust the font size as needed */
+  margin-right: 15px;
+  color: #793a00;
+  white-space: nowrap;
+}
+.links{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 30px;
+  margin-right: 40px;
+
+  
+}
+.nav-link::after {
+  content: " ";
+  margin-left: 5px; /* Adjust spacing as needed */
+}
+.logout-btn {
+  background-color: #793a00;
+  transition-duration: 0.4s;
+  border-radius: 12px;
+  padding: 5px 15px;
+}
+
+.logout-btn:hover {
+  background-color: #725f3cc3; /* Green */
+  color: white;
+}

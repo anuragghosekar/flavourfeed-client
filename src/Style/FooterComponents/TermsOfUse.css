@@ -1,0 +1,35 @@
+/* TermsOfUse.css */
+
+.terms-of-use {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .terms-of-use h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .terms-of-use h3 {
+    font-size: 20px;
+    margin-top: 30px;
+  }
+  
+  .terms-of-use p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  .terms-of-use a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .terms-of-use a:hover {
+    text-decoration: underline;
+  }
