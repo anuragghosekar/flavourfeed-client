@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RecipeService from "../Service/RecipeService";
 import { Navigate, Link } from "react-router-dom";
-// import "../Style/MealPlanning.css";
+import "../Style/MealPlanning.css";
 
 export default function MealPlanner() {
   const [recipes, setRecipes] = useState([]);
@@ -76,7 +76,7 @@ export default function MealPlanner() {
   };
 
   return (
-    <div className="container user-recipes-container">
+    <div className="container-days user-r-container">
       <h2>Meal Planner</h2>
       <div className="add-day-button-container">
         <button onClick={addDay} className="days-btn-add">
@@ -88,9 +88,9 @@ export default function MealPlanner() {
           <h3>
             Day {index + 1} - Total Calories: {calculateTotalCalories(day)}
           </h3>
-          <div className="user-recipes">
+          <div className="user-r">
             {day.map((recipe, recipeIndex) => (
-              <div key={recipe.recipeId} className="user-recipe">
+              <div key={recipe.recipeId} className="user-r">
                 {/* Recipe Details */}
                 <h3>
                   {recipe.recipeName} Calories: {recipe.totalCalories}

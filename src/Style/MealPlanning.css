@@ -12,12 +12,12 @@
 }
 
 .days-btn-add-rsp {
-      width: 80px; /* Adjusted width for smaller screens */
-      height: 30px; /* Adjusted height for smaller screens */
-      margin-bottom: 5px;
-      margin-top: 5px;
-      font-size: 8px; /* Adjusted font size for smaller screens */
-    }
+  width: 80px; /* Adjusted width for smaller screens */
+  height: 30px; /* Adjusted height for smaller screens */
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size: 8px; /* Adjusted font size for smaller screens */
+}
 
 .days-btn-add,
 .days-btn-add-rsp {
@@ -64,14 +64,14 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
 }
 
-.user-recipe {
+.user-r {
   margin-bottom: 10px; /* Add spacing between recipes */
   width: 100%; /* Full width on smaller screens */
   max-width: 200px; /* Maximum width for larger screens */
 }
 
 /* Container Styles */
-.container {
+.container-days {
   text-align: center;
 }
 
