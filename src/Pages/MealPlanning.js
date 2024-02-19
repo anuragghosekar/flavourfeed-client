@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import RecipeService from '../Service/RecipeService';
-import { Navigate, Link } from 'react-router-dom';
-import "../Style/MealPlanning.css";
+import React, { useState, useEffect } from "react";
+import RecipeService from "../Service/RecipeService";
+import { Navigate, Link } from "react-router-dom";
+// import "../Style/MealPlanning.css";
 
 export default function MealPlanner() {
   const [recipes, setRecipes] = useState([]);
@@ -14,7 +14,7 @@ export default function MealPlanner() {
         const response = await RecipeService.getAllRecipes();
         setRecipes(response.data);
       } catch (error) {
-        console.error('Error fetching recipes:', error);
+        console.error("Error fetching recipes:", error);
       }
     };
 
@@ -44,7 +44,10 @@ export default function MealPlanner() {
     }
 
     const newDays = [...days];
-    newDays[index] = [...newDays[index], { ...selectedRecipe, additionalInfo: '' }];
+    newDays[index] = [
+      ...newDays[index],
+      { ...selectedRecipe, additionalInfo: "" },
+    ];
     setDays(newDays);
   };
 
@@ -72,49 +75,69 @@ export default function MealPlanner() {
     setDays(newDays);
   };
 
- 
-    return (
-      <div className="container user-recipes-container">
-        <h2>Meal Planner</h2>
-        <div className="add-day-button-container">
-          <button onClick={addDay} className='days-btn-add'>Add Day</button>
-        </div>
-        {days.map((day, index) => (
-          <div key={index} className="meal-day">
-            <h3>Day {index + 1} - Total Calories: {calculateTotalCalories(day)}</h3>
-            <div className="user-recipes">
-  {day.map((recipe, recipeIndex) => (
-    <div key={recipe.recipeId} className="user-recipe">
-      {/* Recipe Details */}
-      <h3>{recipe.recipeName}  Calories: {recipe.totalCalories}</h3>
-      <input
-        type="text"
-        placeholder="Additional Info"
-        value={recipe.additionalInfo}
-        onChange={(event) => handleInputChange(index, recipeIndex, event)}
-      />
-      {/* Delete recipe button */}
-      <button onClick={() => deleteRecipe(index, recipeIndex)} className='days-btn-dtl-rsp'>Delete Recipe</button>
-    </div>
-  ))}
-  {/* Select and Add Recipe Button */}
-  <div>
-    <select onChange={(e) => setSelectedRecipe(JSON.parse(e.target.value))}>
-      <option value="">Select Recipe</option>
-      {recipes.map((recipe) => (
-        <option key={recipe.recipeId} value={JSON.stringify(recipe)}>
-          {recipe.recipeName} - Calories: {recipe.totalCalories}
-        </option>
-      ))}
-    </select>
-    <button onClick={() => addRecipe(index) } className='days-btn-add-rsp'>Add Recipe</button>
-  </div>
-</div>
-            {/* Delete Day button */}
-            <button onClick={() => deleteDay(index)} className='days-btn-dtl'>Delete Day</button>
-          </div>
-        ))}
+  return (
+    <div className="container user-recipes-container">
+      <h2>Meal Planner</h2>
+      <div className="add-day-button-container">
+        <button onClick={addDay} className="days-btn-add">
+          Add Day
+        </button>
       </div>
-    );
-    
+      {days.map((day, index) => (
+        <div key={index} className="meal-day">
+          <h3>
+            Day {index + 1} - Total Calories: {calculateTotalCalories(day)}
+          </h3>
+          <div className="user-recipes">
+            {day.map((recipe, recipeIndex) => (
+              <div key={recipe.recipeId} className="user-recipe">
+                {/* Recipe Details */}
+                <h3>
+                  {recipe.recipeName} Calories: {recipe.totalCalories}
+                </h3>
+                <input
+                  type="text"
+                  placeholder="Additional Info"
+                  value={recipe.additionalInfo}
+                  onChange={(event) =>
+                    handleInputChange(index, recipeIndex, event)
+                  }
+                />
+                {/* Delete recipe button */}
+                <button
+                  onClick={() => deleteRecipe(index, recipeIndex)}
+                  className="days-btn-dtl-rsp"
+                >
+                  Delete Recipe
+                </button>
+              </div>
+            ))}
+            {/* Select and Add Recipe Button */}
+            <div>
+              <select
+                onChange={(e) => setSelectedRecipe(JSON.parse(e.target.value))}
+              >
+                <option value="">Select Recipe</option>
+                {recipes.map((recipe) => (
+                  <option key={recipe.recipeId} value={JSON.stringify(recipe)}>
+                    {recipe.recipeName} - Calories: {recipe.totalCalories}
+                  </option>
+                ))}
+              </select>
+              <button
+                onClick={() => addRecipe(index)}
+                className="days-btn-add-rsp"
+              >
+                Add Recipe
+              </button>
+            </div>
+          </div>
+          {/* Delete Day button */}
+          <button onClick={() => deleteDay(index)} className="days-btn-dtl">
+            Delete Day
+          </button>
+        </div>
+      ))}
+    </div>
+  );
 }
