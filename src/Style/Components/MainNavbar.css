@@ -5,6 +5,13 @@
   padding-bottom: 0; /* Remove default padding */
   background-color: #D9EDBF ;
 }
+.sticky-top {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
 
 .main-div {
   margin-bottom: 20px; /* Add some space below the navbar if needed */

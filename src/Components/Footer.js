@@ -4,7 +4,7 @@ import '../Style/Components/Footer.css';
 
 export default function Footer() {
   return (
-    <div>
+    <div className="footer-container">
       <h4 className="footer">
         &copy; Copyrights reserved | 
         <Link to="/aboutus"> About Us</Link> | 

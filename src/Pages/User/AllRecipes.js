@@ -31,35 +31,31 @@ export default function AllRecipes() {
   }
 
   return (
-    <div className="home-container">
-      <h2 className='all-recipes'>All Users Recipes</h2>
-      <div className="recipe-list">
-        {recipes.map(recipe => (
-          
-          <div key={recipe.recipeId} className="recipe-card">
-           
-            {recipe.recipe_image && (
-              <img src={`data:image/jpeg;base64,${recipe.recipe_image}`} alt={recipe.recipeName}  onClick={() => handleRecipeClick(recipe.recipeId)}/>
-            )}
-            <div className="recipe-details">
-              <h3 className="recipe-name">{recipe.recipeName}</h3>
-              <p className="recipe-calories">Total Calories: {recipe.totalCalories}</p>
+    <div className="container user-recipes-container">
+        <h2>My Recipes</h2>
+        <div className="user-recipes">
+          {recipes.map((recipe) => (
+            <div key={recipe.recipeId} className="user-recipe" onClick={() => handleRecipeClick(recipe.recipeId)}>
+              <div className="recipe-image">
+                {recipe.recipe_image ? (
+                  <img src={`data:image/jpeg;base64,${recipe.recipe_image}`} alt={recipe.recipeName} />
+                ) : (
+                  <span>No Image</span>
+                )}
+              </div>
+              <h3>{recipe.recipeName}</h3>
+              <p>Recipe Type: {recipe.recipeType}</p>
+              <p>Total Calories: {recipe.totalCalories}</p> 
+              <p>Recipe Description: {recipe.recipeDescription}</p>
+              
+              <div className="recipe-actions">
+               
+              </div>
             </div>
-            <p className='displayname'>{recipe.recipeName}</p>
-            
-          </div>
           
         ))}
       </div>
 
-      {/* Conditionally render the selected recipe details */}
-      {selectedRecipe && (
-        <div className="selected-recipe-details">
-          <h3>{selectedRecipe.recipeName}</h3>
-          <p>Total Calories: {selectedRecipe.totalCalories}</p>
-          {/* Add more details as needed */}
-        </div>
-      )}
     </div>
   );
 }

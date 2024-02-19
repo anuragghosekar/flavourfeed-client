@@ -74,7 +74,7 @@ export default function UserRecipes() {
               <div className="recipe-actions">
                 <Link to={`/edit/${recipe.recipeId}`} > <button className='edit' >Edit</button></Link>
                 <button className='delete' onClick={() => deleteRecipe(recipe.recipeId)}>Delete</button>
-                <Link  to={`/view/${recipe.recipeId}`}> <button className="view" >View</button></Link>
+                <Link  to={`/user/view/${recipe.recipeId}`}> <button className="view" >View</button></Link>
               </div>
             </div>
           ))}

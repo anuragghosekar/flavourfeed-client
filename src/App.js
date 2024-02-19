@@ -35,6 +35,8 @@ import LogNavbar from "./Pages/User/LogNavbar";
 import Particle from "./Pages/Particle";
 import AllRecipes from "./Pages/User/AllRecipes";
 import AdminNavbar from "./Pages/Admin/AdminNavbar";
+import ViewUserRecipe from "./Pages/User/ViewUserRecipe";
+import HomeViewRecipe from "./Pages/HomeViewRecipe";
 
 
 function App() {
@@ -81,8 +83,13 @@ function App() {
 
 
        {/* <Route path="/viewrecipe" element={<UserProfile></UserProfile>}></Route> */}
+
+       <Route path="/home/view/:id" element={<HomeViewRecipe/>}></Route>
        
        <Route path="/view/:id" element={<RecipeDetails></RecipeDetails>}></Route>
+
+       <Route path="/user/view/:id" element={<ViewUserRecipe/>}></Route>
+
 
        <Route path="/adminviewuser/:id" element={<><AdminNavbar/><AdminViewUser></AdminViewUser></>}/>
 

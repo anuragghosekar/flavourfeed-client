@@ -100,7 +100,7 @@ export default function LogNavbar() {
             <Navbar.Collapse id="responsive-navbar-nav">  
               <Nav className="me-auto">  
               <Nav.Link href="/adminDashboard">Home</Nav.Link>
-                <Nav.Link href="/adminGetAllRecipes">All Recepies</Nav.Link>  
+                <Nav.Link href="/adminGetAllRecipes">All Recipes</Nav.Link>  
                 <Nav.Link href="/adminGetAllFeedbacks">All Feedback</Nav.Link>
                 <Nav.Link href="/adminProfile">My Profile</Nav.Link> 
                 <Nav.Link href="/adminGetAllUsers">All Users</Nav.Link>

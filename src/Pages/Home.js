@@ -8,14 +8,14 @@ export default function Home() {
     //localStorage.removeItem('userId');  //Safety
   const [recipes, setRecipes] = useState([]);
   const [loggedIn, setLoggedIn] = useState(true);
+  const [selectedRecipe, setSelectedRecipe] = useState(null); // State to store the selected recipe details
+  const [flag,setflag] = useState(false);
+
   useEffect(() => {
-    const userId = localStorage.getItem('userId');
-    // if (!userId) {
-    //   setLoggedIn(false);
-    // } else {
     const fetchRecipes = async () => {
       try {
         const response = await RecipeService.getAllRecipes();
+        // const userId = localStorage.getItem('userId');
         setRecipes(response.data);
       } catch (error) {
         console.error('Error fetching recipes:', error);
@@ -23,12 +23,19 @@ export default function Home() {
     };
 
     fetchRecipes();
-    }, []);
+  }, []);
 
-    // if (!loggedIn) {
-    //   // Redirect to login if not logged in
-    //   return <Navigate to="/login" replace />;
-    // }
+  // Function to handle clicking on a recipe card
+  const handleRecipeClick = (recipe) => {
+    setSelectedRecipe(recipe); // Set the selected recipe details when clicked
+    setflag(true);
+  };
+  if(flag){
+    return <Navigate to={`/home/view/${selectedRecipe}`} replace />;
+  }
+ 
+
+    
 
   return (
     <>
@@ -291,26 +298,31 @@ export default function Home() {
       <br></br>
       <br></br>
       <hr></hr>
-      <h2 className='all-recipes' id="allrecipes">All Users Recipes</h2>
-      <div className="recipe-list">
-        {recipes.map(recipe => (
-          <div key={recipe.recipeId} className="recipe-card">
-            {recipe.recipe_image && (
-              <img src={`data:image/jpeg;base64,${recipe.recipe_image}`} alt={recipe.recipeName} />
-            )}
-            <div className="recipe-details">
-              <h3 className="recipe-name">{recipe.recipeName}</h3>
-              {/* <p className="recipe-instructions">Instructions: {recipe.instructions}</p> */}
-              <p className="recipe-calories">Total Calories: {recipe.totalCalories}</p>
+      <div className="container user-recipes-container">
+        <h2>My Recipes</h2>
+        <div className="user-recipes">
+          {recipes.map((recipe) => (
+            <div key={recipe.recipeId} className="user-recipe" onClick={() => handleRecipeClick(recipe.recipeId)}>
+              <div className="recipe-image">
+                {recipe.recipe_image ? (
+                  <img src={`data:image/jpeg;base64,${recipe.recipe_image}`} alt={recipe.recipeName} />
+                ) : (
+                  <span>No Image</span>
+                )}
+              </div>
+              <h3>{recipe.recipeName}</h3>
+              <p>Recipe Type: {recipe.recipeType}</p>
+              <p>Total Calories: {recipe.totalCalories}</p> 
+              <p>Recipe Description: {recipe.recipeDescription}</p>
+              
+              <div className="recipe-actions">
+               
+              </div>
             </div>
-            <p className='displayname'>{recipe.recipeName}</p>
-          </div>
-          
-        )
-        )
-        }
+          ))}
+        </div>
       </div>
-    </div>
+      </div>
     </>
   );
 }

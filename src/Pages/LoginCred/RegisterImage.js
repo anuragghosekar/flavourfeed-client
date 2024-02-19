@@ -229,7 +229,7 @@ export default function RegisterImage() {
             type="date"
             className={`form-control ${errors.dateOfBirth && "is-invalid"}`}
             value={formDetails.dateOfBirth}
-            onChange={(e) => setFormDetails({ ...formDetails, dateOfBirth: e.target.value })}
+            onChange={(e) => setFormDetails({ ...formDetails, dateOfBirth: e.target.value })} 
           />
           {errors.dateOfBirth && <div className="invalid-feedback">{errors.dateOfBirth}</div>}
         </div>

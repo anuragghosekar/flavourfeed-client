@@ -102,6 +102,7 @@ export default function AddRecipe() {
         selectedIngredients.map(async (ingredient) => {
           return await IngredientService.addIngredient(ingredient, addedRecipeId);
         })
+       
       );
 
       navigate("/userdashboard");
@@ -109,6 +110,7 @@ export default function AddRecipe() {
     } catch (error) {
       console.error('Error adding recipe and ingredients:', error);
     }
+    navigate("/userrecipes");
   };
 
   const handleIngredientChange = (e) => {

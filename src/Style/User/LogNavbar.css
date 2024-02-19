@@ -2,9 +2,6 @@
 .main-div{
       background-color: #ecedf1 ; 
     }
-    
-   
-
 .navbar {
   padding-top: 0; /* Remove default padding */
   padding-bottom: 0; /* Remove default padding */
@@ -34,9 +31,7 @@
   top: 0;
   right: 0;
   margin-top: 30px;
-  margin-right: 40px;
-
-  
+  margin-right: 40px;  
 }
 .nav-link::after {
   content: " ";

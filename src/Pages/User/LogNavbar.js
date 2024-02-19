@@ -82,9 +82,9 @@ export default function LogNavbar() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />  
             <Navbar.Collapse id="responsive-navbar-nav">  
               <Nav className="me-auto">  
-                <Nav.Link href="/allrecepies">All Recepies</Nav.Link>  
+                <Nav.Link href="/allrecepies">All Recipes</Nav.Link>  
                 <Nav.Link href="/mealplanning">Meal Planning</Nav.Link> 
-                <Nav.Link href="/userrecipes">My Recepies</Nav.Link>
+                <Nav.Link href="/userrecipes">My Recipes</Nav.Link>
                 <Nav.Link href="/userProfile">My Profile</Nav.Link> 
                 <Nav.Link href="/feedback">Feedback</Nav.Link> 
                 <button className="logout-btn" onClick={handleLogout}>Logout</button>

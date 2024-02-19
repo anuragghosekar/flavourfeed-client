@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link,Navigate } from 'react-router-dom';
 import RecipeService from '../Service/RecipeService';
 import UserService from '../Service/UserService';
-import MainNavbar from '../Components/MainNavbar';
+import LogNavbar from '../Pages/User/LogNavbar';
 import "../Style/RecepieDetails.css";
 
 
@@ -80,7 +80,7 @@ export default function RecipeDetails() {
 
   return (
     <>
-    <MainNavbar/>
+    <LogNavbar/>
     <div className="container">
       {recipe ? (
         <div className="card">

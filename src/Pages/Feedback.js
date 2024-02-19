@@ -1,23 +1,14 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import FeedbackService from '../Service/FeedbackService';
 import '../Style/Feedback.css';
-import { Navigate,useNavigate   } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import UserService from '../Service/UserService';
 
 export default function FeedbackPage() {
   const [feedback, setFeedback] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [isadmin, setisadmin] = useState(false);
-  const navigate=useNavigate();
-
-
-  // useEffect(() => {
-  //   const userId = localStorage.getItem('userId');
-  //   console.log(userId);
-  //   if (!userId) {
-  //     navigate("/login"); // Use push method of history to navigate
-  //   }
-  // }, [navigate]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const checkAdmin = async () => {
@@ -51,11 +42,11 @@ export default function FeedbackPage() {
       await FeedbackService.addfeedback(feedback, userId);
       setFeedback('');
       setSubmitted(true);
+      setTimeout(() => navigate("/userProfile"), 2000); // Reset submitted state after 2 seconds
     } catch (error) {
       console.error('Error submitting feedback:', error);
     }
   };
-
 
   return (
     <div className="feedback-page">

@@ -7,6 +7,7 @@ import UserService from "../../Service/UserService";
 export default function AdminDashboard() {
   const [loggedIn, setLoggedIn] = useState(true);
   const [isadmin, setisadmin] = useState(true);
+  const [admin, setAdmin] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,6 +20,7 @@ export default function AdminDashboard() {
 
         const userResponse = await UserService.getUserById(userId);
         const userData = userResponse.data;
+        setAdmin(userResponse.data);
         if (userData.role === "user") {
           setisadmin(false);
         }
@@ -42,8 +44,12 @@ export default function AdminDashboard() {
 
   return (
     <>
+      
       <div className="admin-dashboard">
-        <h1>Admin Dashboard</h1>
+      <h1 className="h1">Welcome, {`${admin.firstname} ${admin.lastname}`}</h1>
+      <br></br>
+      <br></br>
+        <h2>Admin Dashboard</h2>
         <div className="button-container">
           <Link to="/adminGetAllUsers">
             <button className="dashboard-button">Get All Users</button>
