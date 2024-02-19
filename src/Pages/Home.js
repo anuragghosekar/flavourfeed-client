@@ -298,7 +298,7 @@ export default function Home() {
         <br></br>
         <hr></hr>
         <div className="container user-recipes-container">
-          <h2>My Recipes</h2>
+          <h2 id="allrecipes">All Recipes</h2>
           <div className="user-recipes">
             {recipes.map((recipe) => (
               <div
