@@ -78,6 +78,9 @@
 /* Add Day Button Container Styles */
 .add-day-button-container {
   margin-bottom: 20px;
+  width: 20%;
+  margin: 0 auto;
+  margin-bottom: 5%;
 }
 
 /* Responsive Media Queries */
