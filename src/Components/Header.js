@@ -6,7 +6,7 @@ export default function Header() {
     <>
     <header className="header">
         <div className="header__title" id="parallax">
-          <h1>
+          <h1 id="header--div">
             To live a {/* <!-- Green highlight effect --> */}&nbsp;
             <span className="highlight">full life, </span>
             <br />
