@@ -1,19 +1,18 @@
-import React, { useState ,useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
-import UserService from '../../Service/UserService';
-import '../../Style/LoginCred/Register.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import UserService from "../../Service/UserService";
+import "../../Style/LoginCred/Register.css";
 
 export default function RegisterUser() {
-  const [imageFile,setImageFile]=useState(null);
+  const [imageFile, setImageFile] = useState(null);
 
   useEffect(() => {
-    const userId = localStorage.getItem('userId');
-    console.log('userId');
+    const userId = localStorage.getItem("userId");
+    console.log("userId");
     if (userId) {
       navigate("/userdashboard");
     }
-  }, [navigate]); 
-
+  }, [navigate]);
 
   const [formDetails, setFormDetails] = useState({
     firstname: "",
@@ -24,10 +23,10 @@ export default function RegisterUser() {
     email: "",
     phonenumber: "",
     gender: "",
-    address: "",
+    // address: "",
     preferences: "",
     allergies: "",
-    dateOfBirth: ""
+    dateOfBirth: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -66,9 +65,9 @@ export default function RegisterUser() {
     if (!formDetails.gender.trim()) {
       errors.gender = "Gender is required";
     }
-    if (!formDetails.address.trim()) {
-      errors.address = "Address is required";
-    }
+    // if (!formDetails.address.trim()) {
+    //   errors.address = "Address is required";
+    // }
     if (!formDetails.dateOfBirth.trim()) {
       errors.dateOfBirth = "Date of Birth is required";
     }
@@ -83,7 +82,7 @@ export default function RegisterUser() {
       setImageFile(selectedFile);
     }
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValid = validateForm();
@@ -93,9 +92,9 @@ export default function RegisterUser() {
       Object.keys(formDetails).forEach((key) => {
         formData.append(key, formDetails[key]);
       });
-  
-      formData.append('image', imageFile);
-  
+
+      formData.append("image", imageFile);
+
       UserService.addUser(formData)
         .then(() => {
           setFormDetails({
@@ -107,10 +106,10 @@ export default function RegisterUser() {
             email: "",
             phonenumber: "",
             gender: "",
-            address: "",
+            // address: "",
             preferences: "",
             allergies: "",
-            dateOfBirth: ""
+            dateOfBirth: "",
           });
           navigate("/home");
         })
@@ -119,19 +118,27 @@ export default function RegisterUser() {
         });
     }
   };
-  
+
   return (
     <div className="register-container">
-      <form onSubmit={handleSubmit} className="register-form" encType="multipart/form-data">
+      <form
+        onSubmit={handleSubmit}
+        className="register-form"
+        encType="multipart/form-data"
+      >
         <div className="form-group">
           <label>First Name:</label>
           <input
             type="text"
             className={`form-control ${errors.firstname && "is-invalid"}`}
             value={formDetails.firstname}
-            onChange={(e) => setFormDetails({ ...formDetails, firstname: e.target.value })}
+            onChange={(e) =>
+              setFormDetails({ ...formDetails, firstname: e.target.value })
+            }
           />
-          {errors.firstname && <div className="invalid-feedback">{errors.firstname}</div>}
+          {errors.firstname && (
+            <div className="invalid-feedback">{errors.firstname}</div>
+          )}
         </div>
         <div className="form-group">
           <label>Last Name:</label>
@@ -139,9 +146,13 @@ export default function RegisterUser() {
             type="text"
             className={`form-control ${errors.lastname && "is-invalid"}`}
             value={formDetails.lastname}
-            onChange={(e) => setFormDetails({ ...formDetails, lastname: e.target.value })}
+            onChange={(e) =>
+              setFormDetails({ ...formDetails, lastname: e.target.value })
+            }
           />
-          {errors.lastname && <div className="invalid-feedback">{errors.lastname}</div>}
+          {errors.lastname && (
+            <div className="invalid-feedback">{errors.lastname}</div>
+          )}
         </div>
         <div className="form-group">
           <label>Username:</label>
@@ -149,9 +160,13 @@ export default function RegisterUser() {
             type="text"
             className={`form-control ${errors.username && "is-invalid"}`}
             value={formDetails.username}
-            onChange={(e) => setFormDetails({ ...formDetails, username: e.target.value })}
+            onChange={(e) =>
+              setFormDetails({ ...formDetails, username: e.target.value })
+            }
           />
-          {errors.username && <div className="invalid-feedback">{errors.username}</div>}
+          {errors.username && (
+            <div className="invalid-feedback">{errors.username}</div>
+          )}
         </div>
         <div className="form-group">
           <label>Password:</label>
@@ -159,9 +174,13 @@ export default function RegisterUser() {
             type="password"
             className={`form-control ${errors.password && "is-invalid"}`}
             value={formDetails.password}
-            onChange={(e) => setFormDetails({ ...formDetails, password: e.target.value })}
+            onChange={(e) =>
+              setFormDetails({ ...formDetails, password: e.target.value })
+            }
           />
-          {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+          {errors.password && (
+            <div className="invalid-feedback">{errors.password}</div>
+          )}
         </div>
         <div className="form-group">
           <label>Confirm Password:</label>
@@ -169,9 +188,16 @@ export default function RegisterUser() {
             type="password"
             className={`form-control ${errors.confirmPassword && "is-invalid"}`}
             value={formDetails.confirmPassword}
-            onChange={(e) => setFormDetails({ ...formDetails, confirmPassword: e.target.value })}
+            onChange={(e) =>
+              setFormDetails({
+                ...formDetails,
+                confirmPassword: e.target.value,
+              })
+            }
           />
-          {errors.confirmPassword && <div className="invalid-feedback">{errors.confirmPassword}</div>}
+          {errors.confirmPassword && (
+            <div className="invalid-feedback">{errors.confirmPassword}</div>
+          )}
         </div>
         <div className="form-group">
           <label>Email:</label>
@@ -179,9 +205,13 @@ export default function RegisterUser() {
             type="email"
             className={`form-control ${errors.email && "is-invalid"}`}
             value={formDetails.email}
-            onChange={(e) => setFormDetails({ ...formDetails, email: e.target.value })}
+            onChange={(e) =>
+              setFormDetails({ ...formDetails, email: e.target.value })
+            }
           />
-          {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+          {errors.email && (
+            <div className="invalid-feedback">{errors.email}</div>
+          )}
         </div>
         <div className="form-group">
           <label>Phone Number:</label>
@@ -189,39 +219,53 @@ export default function RegisterUser() {
             type="text"
             className={`form-control ${errors.phonenumber && "is-invalid"}`}
             value={formDetails.phonenumber}
-            onChange={(e) => setFormDetails({ ...formDetails, phonenumber: e.target.value })}
+            onChange={(e) =>
+              setFormDetails({ ...formDetails, phonenumber: e.target.value })
+            }
           />
-          {errors.phonenumber && <div className="invalid-feedback">{errors.phonenumber}</div>}
+          {errors.phonenumber && (
+            <div className="invalid-feedback">{errors.phonenumber}</div>
+          )}
         </div>
         <div className="form-group">
           <label>Gender:</label>
           <select
             className={`form-control ${errors.gender && "is-invalid"}`}
             value={formDetails.gender}
-            onChange={(e) => setFormDetails({ ...formDetails, gender: e.target.value })}
+            onChange={(e) =>
+              setFormDetails({ ...formDetails, gender: e.target.value })
+            }
           >
             <option value="">Select Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
           </select>
-          {errors.gender && <div className="invalid-feedback">{errors.gender}</div>}
+          {errors.gender && (
+            <div className="invalid-feedback">{errors.gender}</div>
+          )}
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label>Address:</label>
           <textarea
             className={`form-control ${errors.address && "is-invalid"}`}
             value={formDetails.address}
-            onChange={(e) => setFormDetails({ ...formDetails, address: e.target.value })}
+            onChange={(e) =>
+              setFormDetails({ ...formDetails, address: e.target.value })
+            }
           />
-          {errors.address && <div className="invalid-feedback">{errors.address}</div>}
-        </div>
+          {errors.address && (
+            <div className="invalid-feedback">{errors.address}</div>
+          )}
+        </div> */}
         <div className="form-group">
           <label>Preferences:</label>
           <textarea
             className="form-control"
             value={formDetails.preferences}
-            onChange={(e) => setFormDetails({ ...formDetails, preferences: e.target.value })}
+            onChange={(e) =>
+              setFormDetails({ ...formDetails, preferences: e.target.value })
+            }
           />
         </div>
         <div className="form-group">
@@ -229,7 +273,9 @@ export default function RegisterUser() {
           <textarea
             className="form-control"
             value={formDetails.allergies}
-            onChange={(e) => setFormDetails({ ...formDetails, allergies: e.target.value })}
+            onChange={(e) =>
+              setFormDetails({ ...formDetails, allergies: e.target.value })
+            }
           />
         </div>
         <div className="form-group">
@@ -238,9 +284,13 @@ export default function RegisterUser() {
             type="date"
             className={`form-control ${errors.dateOfBirth && "is-invalid"}`}
             value={formDetails.dateOfBirth}
-            onChange={(e) => setFormDetails({ ...formDetails, dateOfBirth: e.target.value })}
+            onChange={(e) =>
+              setFormDetails({ ...formDetails, dateOfBirth: e.target.value })
+            }
           />
-          {errors.dateOfBirth && <div className="invalid-feedback">{errors.dateOfBirth}</div>}
+          {errors.dateOfBirth && (
+            <div className="invalid-feedback">{errors.dateOfBirth}</div>
+          )}
         </div>
         <div className="form-group">
           <label>Upload Image:</label>
