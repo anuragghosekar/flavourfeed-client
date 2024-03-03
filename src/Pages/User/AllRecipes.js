@@ -32,7 +32,7 @@ export default function AllRecipes() {
 
   return (
     <div className="container user-recipes-container">
-        <h2>My Recipes</h2>
+        <h2>All Recipes</h2>
         <div className="user-recipes">
           {recipes.map((recipe) => (
             <div key={recipe.recipeId} className="user-recipe" onClick={() => handleRecipeClick(recipe.recipeId)}>
@@ -46,6 +46,7 @@ export default function AllRecipes() {
               <h3>{recipe.recipeName}</h3>
               <p>Recipe Type: {recipe.recipeType}</p>
               <p>Total Calories: {recipe.totalCalories}</p> 
+              <p>Cooking time: {recipe.cookTime}</p>
               <p>Recipe Description: {recipe.recipeDescription}</p>
               
               <div className="recipe-actions">

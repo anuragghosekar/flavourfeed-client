@@ -3,6 +3,7 @@ import { useParams, Navigate ,useNavigate} from 'react-router-dom';
 import RecipeService from '../../Service/RecipeService';
 import UserService from '../../Service/UserService';
 import LogNavbar from './LogNavbar';
+import "../../Style/User/EditRecipe.css";
 
 export default function EditRecipe() {
         const { id } = useParams();
@@ -21,31 +22,7 @@ export default function EditRecipe() {
         });
 
         const navigate = useNavigate();
-        // useEffect(() => {
-        //   const userId = localStorage.getItem('userId');
-        //   if (!userId) {
-        //     setLoggedIn(false);
-        //   } else {
-        //   const fetchRecipeDetails = async () => {
-        //     try {
-        //       const response = await RecipeService.getRecipeById(id);
-        //       const recipe = response.data;  
-        //       const ingredientsResponse = await RecipeService.getIngredientsByRecipe(id);
-        //       const ingredients = ingredientsResponse.data;
-
-        //       const updatedFormDetails = {
-        //         ...recipe,
-        //         recipeIngredients: ingredients
-        //       };
-        
-        //       setFormDetails(updatedFormDetails);
-        //       } catch (error) {
-        //       console.error('Error fetching recipe details:', error);
-        //     }
-        //   };
-
-        //   fetchRecipeDetails();
-        //   }}, [id]);
+       
 
         useEffect(() => {
           const fetchData = async () => {
@@ -124,10 +101,17 @@ export default function EditRecipe() {
             });
         };
 
-
+        const handleIngredientChange = (index, key, value) => {
+          const updatedIngredients = [...formDetails.recipeIngredients];
+          updatedIngredients[index][key] = value;
+          setFormDetails(prevState => ({
+            ...prevState,
+            recipeIngredients: updatedIngredients
+          }));
+        };
         return (
           <>
-          <div>
+           <div className="edit-recipe-container">
             <form>
               <div className="form-group">
                 <input 
@@ -211,35 +195,38 @@ export default function EditRecipe() {
   </select>
 </div>
 
-              <div className="form-group">
-                <label htmlFor="recipeDescription">Recipe Description</label>
-                <input 
-                  type="text" 
-                  className="form-control" 
-                  id="recipeDescription" 
-                  name="recipeDescription"
-                  value={formDetails.recipeDescription}
-                  onChange={(event) => {
-                    setFormDetails({...formDetails, recipeDescription: event.target.value});
-                  }}
-                />
-              </div>
-              <div className="form-group">
-        <label htmlFor="recipeIngredients">Recipe Ingredients</label>
-        <ul>
-          {formDetails.recipeIngredients.map((ingredient, index) => (
-            <li key={index}>{ingredient.ingredientName}</li>
-          ))}
-        </ul>
-        {console.log(formDetails.recipeIngredients)}
-      </div>
+<div className="form-group">
+            
+            <ul>
+              {formDetails.recipeIngredients.map((ingredient, index) => (
+                <li key={index}>
+                  Ingredient Name
+                  <input
+                    type="text"
+                    id= "ingredientName"
+                    name='ingredientName'
+                    value={ingredient.ingredientName}
+                    onChange={(e) => handleIngredientChange(index, 'ingredientName', e.target.value)}
+                  />
+                  Qnatity
+                   <input
+                    type="text"
+                    id= "qantity"
+                    name='quantity'
+                    value={ingredient.quantity}
+                    onChange={(e) => handleIngredientChange(index, 'quantity', e.target.value)}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
       <button 
-          type="button" 
-          className="btn btn-primary" 
-          onClick={updateRecipe}
-      >
-      Update Recipe
-      </button>
+            type="button" 
+            className="btn btn-primary update-recipe-btn" 
+            onClick={updateRecipe}
+          >
+            Update Recipe
+          </button>
       </form>
       </div>
       </>

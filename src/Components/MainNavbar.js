@@ -1,10 +1,10 @@
-import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
-import "../Style/Components/MainNavbar.css";
+import React from 'react';
+import { Navbar, Container, Nav } from 'react-bootstrap';
+import '../Style/Components/MainNavbar.css';
 
 export default function MainNavbar() {
   return (
-    <div className="sticky-top">
+    <div className='sticky-top'>
       <Navbar collapseOnSelect expand="lg">
         <Container>
           <div>
@@ -18,7 +18,7 @@ export default function MainNavbar() {
               />
             </Navbar.Brand>
           </div>
-          <div className="links">
+          <div className='links'>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="me-auto">

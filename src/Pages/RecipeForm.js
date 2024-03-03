@@ -23,10 +23,13 @@ export default function AddRecipe() {
     ingredientName: '',
     ingredientType: '',
     ingredientDescription: '',
-    calorieCount: ''
+    quantity: ''
   });
   const [showAddIngredientForm, setShowAddIngredientForm] = useState(false);
   const userId=localStorage.getItem('userId');
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,7 +69,7 @@ export default function AddRecipe() {
       ingredientName: '',
       ingredientType: '',
       ingredientDescription: '',
-      calorieCount: ''
+      quantity: ''
     });
   };
 
@@ -81,6 +84,7 @@ export default function AddRecipe() {
         !recipeDescription ||
         !recipeImage ||
         selectedIngredients.length === 0
+        
       ) {
         alert('Please fill in all the fields');
         return;
@@ -102,15 +106,14 @@ export default function AddRecipe() {
         selectedIngredients.map(async (ingredient) => {
           return await IngredientService.addIngredient(ingredient, addedRecipeId);
         })
-       
       );
-
-      navigate("/userdashboard");
+      setShowConfirmation(true);
+      setSuccessMessage('Profile Updated Successfully.');
+      setTimeout(() => navigate("/userrecipes"), 2000);
       
     } catch (error) {
       console.error('Error adding recipe and ingredients:', error);
     }
-    navigate("/userrecipes");
   };
 
   const handleIngredientChange = (e) => {
@@ -211,8 +214,7 @@ export default function AddRecipe() {
           <ul>
             {selectedIngredients.map((ingredient, index) => (
               <li key={index}>
-                {ingredient.ingredientName} - {ingredient.ingredientType} -{' '}
-                {ingredient.ingredientDescription} - {ingredient.calorieCount}
+                {ingredient.ingredientName}  -{' '} {ingredient.quantity}
               </li>
             ))}
           </ul>
@@ -259,40 +261,13 @@ export default function AddRecipe() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="ingredientType">Ingredient Type</label>
-              <select
-                className="form-control"
-                id="ingredientType"
-                name="ingredientType"
-                value={newIngredient.ingredientType}
-                onChange={handleIngredientChange}
-                required
-              >
-                <option value="">Select Ingredient Type</option>
-                <option value="Veg">Veg</option>
-                <option value="Non-Veg">Non Veg</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label htmlFor="ingredientDescription">Ingredient Description</label>
-              <textarea
-                className="form-control"
-                id="ingredientDescription"
-                rows="3"
-                name="ingredientDescription"
-                value={newIngredient.ingredientDescription}
-                onChange={handleIngredientChange}
-                required
-              ></textarea>
-            </div>
-            <div className="form-group">
-              <label htmlFor="calorieCount">Calorie Count</label>
+              <label htmlFor="calorieCount">Quantity</label>
               <input
-                type="number"
+                type="text"
                 className="form-control"
-                id="calorieCount"
-                name="calorieCount"
-                value={newIngredient.calorieCount}
+                id="quantity"
+                name="quantity"
+                value={newIngredient.quantity}
                 onChange={handleIngredientChange}
                 required
               />
@@ -311,6 +286,7 @@ export default function AddRecipe() {
         )}
         <br></br>
         <br></br>
+        
         <button
           type="button"
           className="add-btn"
@@ -324,6 +300,8 @@ export default function AddRecipe() {
           <button className='cancel-btn'>Cancel</button>
         </Link>
       </form>
+      {successMessage && <div className="success-message">{successMessage}</div>}
+
     </div>
   );
 }

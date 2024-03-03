@@ -1,0 +1,55 @@
+/* EditRecipe.css */
+
+.edit-recipe-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .edit-recipe-container form {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .edit-recipe-container .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .edit-recipe-container label {
+      font-weight: bold;
+    }
+    
+    .edit-recipe-container input[type="text"],
+    .edit-recipe-container select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    
+    .edit-recipe-container input[type="text"]:focus,
+    .edit-recipe-container select:focus {
+      border-color: #00bcd4;
+    }
+    
+    .edit-recipe-container ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    
+    .edit-recipe-container .update-recipe-btn {
+      padding: 12px 20px;
+      font-size: 16px;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      background-color: #00bcd4;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+    
+    .edit-recipe-container .update-recipe-btn:hover {
+      background-color: #0097a7;
+    }
+    

@@ -110,7 +110,6 @@ h5 {
   /* line-height: .35; */
 }
 .header__img {
-  /* margin-top: 10%; */
   width: 100%;
   height: 100%;
   grid-column: 2 / 3;
@@ -407,6 +406,8 @@ h5 {
   /* Add any other specific styles for large screens */
 }
 
+
+
 /* Home.css */
 .home-container {
   padding: 20px;
@@ -422,7 +423,7 @@ h5 {
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  transition: box-shadow 0.3s ease,transform 0.3s ease;;
 }
 
 .recipe-card img {
@@ -462,15 +463,14 @@ h5 {
   margin: 5px 0;
   font-size: 2rem;
 }
-.displayname {
+.displayname{
   display: flex;
   justify-content: center;
   font-size: x-large;
 }
-.all-recipes {
+.all-recipes{
   font-size: 5rem;
   margin-bottom: 5rem;
   font: bolder;
-  color: #793a00;
+  color:#793a00;
 }
-

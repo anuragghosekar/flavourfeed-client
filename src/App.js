@@ -37,6 +37,7 @@ import AllRecipes from "./Pages/User/AllRecipes";
 import AdminNavbar from "./Pages/Admin/AdminNavbar";
 import ViewUserRecipe from "./Pages/User/ViewUserRecipe";
 import HomeViewRecipe from "./Pages/HomeViewRecipe";
+import UserHome from "./Pages/User/UserHome"
 
 
 function App() {
@@ -45,7 +46,7 @@ function App() {
        {/* <Route path="/register" element={<Register></Register>}></Route> */}
        {/* <Header></Header>
        <MainNavBar></MainNavBar> */}
-       <Particle/>
+       
        <Routes>
         <Route path="/" element ={<><MainNavBar/><Home/> </>}/>
 
@@ -79,6 +80,8 @@ function App() {
 
        <Route path="/userprofile" element={<><LogNavbar/><UserProfile/></>}/>
 
+       <Route path="/userhome" element={<><Particle/><LogNavbar/><UserHome/></>}/>
+
        <Route path="/allrecepies" element={<><LogNavbar/><AllRecipes/></>}/>
 
 
@@ -93,7 +96,7 @@ function App() {
 
        <Route path="/adminviewuser/:id" element={<><AdminNavbar/><AdminViewUser></AdminViewUser></>}/>
 
-       <Route path="/edit/:id" element={<><AdminNavbar/><EditRecipe></EditRecipe></>}></Route>
+       <Route path="/edit/:id" element={<><LogNavbar/><EditRecipe></EditRecipe></>}></Route>
 
        <Route path="/editprofile" element={<><LogNavbar/><EditProfile></EditProfile></>}></Route>
 

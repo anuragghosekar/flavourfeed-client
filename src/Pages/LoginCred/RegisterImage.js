@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import UserService from "../../Service/UserService";
-import "../../Style/LoginCred/Register.css";
+import React, { useState,useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import UserService from '../../Service/UserService';
+import '../../Style/LoginCred/Register.css';
 
 export default function RegisterImage() {
-  const [imageFile, setImageFile] = useState(null);
+  const [imageFile,setImageFile]=useState(null);
   const [formDetails, setFormDetails] = useState({
     firstname: "",
     lastname: "",
@@ -16,14 +16,14 @@ export default function RegisterImage() {
     gender: "",
     preferences: "",
     allergies: "",
-    dateOfBirth: "",
+    dateOfBirth: ""
   });
 
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userId = localStorage.getItem("userId");
+    const userId = localStorage.getItem('userId');
     if (userId) {
       navigate("/userdashboard");
     }
@@ -62,7 +62,7 @@ export default function RegisterImage() {
     if (!formDetails.gender.trim()) {
       errors.gender = "Gender is required";
     }
-
+    
     if (!formDetails.dateOfBirth.trim()) {
       errors.dateOfBirth = "Date of Birth is required";
     }
@@ -81,7 +81,7 @@ export default function RegisterImage() {
       setImageFile(selectedFile);
     }
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValid = validateForm();
@@ -91,9 +91,9 @@ export default function RegisterImage() {
       Object.keys(formDetails).forEach((key) => {
         formData.append(key, formDetails[key]);
       });
-
-      formData.append("image", imageFile);
-
+  
+      formData.append('image', imageFile);
+  
       UserService.addUser(formData)
         .then(() => {
           setFormDetails({
@@ -107,7 +107,7 @@ export default function RegisterImage() {
             gender: "",
             preferences: "",
             allergies: "",
-            dateOfBirth: "",
+            dateOfBirth: ""
           });
           setImageFile(null);
           navigate("/login");
@@ -117,28 +117,20 @@ export default function RegisterImage() {
         });
     }
   };
-
+  
   return (
     <div className="register-container">
-      <form
-        onSubmit={handleSubmit}
-        className="register-form"
-        encType="multipart/form-data"
-      >
+      <form onSubmit={handleSubmit} className="register-form" encType="multipart/form-data">
         <div className="form-group">
           <label>First Name:</label>
           <input
             type="text"
             className={`form-control ${errors.firstname && "is-invalid"}`}
             value={formDetails.firstname}
-            onChange={(e) =>
-              setFormDetails({ ...formDetails, firstname: e.target.value })
-            }
+            onChange={(e) => setFormDetails({ ...formDetails, firstname: e.target.value })}
             required
           />
-          {errors.firstname && (
-            <div className="invalid-feedback">{errors.firstname}</div>
-          )}
+          {errors.firstname && <div className="invalid-feedback">{errors.firstname}</div>}
         </div>
         <div className="form-group">
           <label>Last Name:</label>
@@ -146,13 +138,9 @@ export default function RegisterImage() {
             type="text"
             className={`form-control ${errors.lastname && "is-invalid"}`}
             value={formDetails.lastname}
-            onChange={(e) =>
-              setFormDetails({ ...formDetails, lastname: e.target.value })
-            }
+            onChange={(e) => setFormDetails({ ...formDetails, lastname: e.target.value })}
           />
-          {errors.lastname && (
-            <div className="invalid-feedback">{errors.lastname}</div>
-          )}
+          {errors.lastname && <div className="invalid-feedback">{errors.lastname}</div>}
         </div>
         <div className="form-group">
           <label>Username:</label>
@@ -160,13 +148,9 @@ export default function RegisterImage() {
             type="text"
             className={`form-control ${errors.username && "is-invalid"}`}
             value={formDetails.username}
-            onChange={(e) =>
-              setFormDetails({ ...formDetails, username: e.target.value })
-            }
+            onChange={(e) => setFormDetails({ ...formDetails, username: e.target.value })}
           />
-          {errors.username && (
-            <div className="invalid-feedback">{errors.username}</div>
-          )}
+          {errors.username && <div className="invalid-feedback">{errors.username}</div>}
         </div>
         <div className="form-group">
           <label>Password:</label>
@@ -174,13 +158,9 @@ export default function RegisterImage() {
             type="password"
             className={`form-control ${errors.password && "is-invalid"}`}
             value={formDetails.password}
-            onChange={(e) =>
-              setFormDetails({ ...formDetails, password: e.target.value })
-            }
+            onChange={(e) => setFormDetails({ ...formDetails, password: e.target.value })}
           />
-          {errors.password && (
-            <div className="invalid-feedback">{errors.password}</div>
-          )}
+          {errors.password && <div className="invalid-feedback">{errors.password}</div>}
         </div>
         <div className="form-group">
           <label>Confirm Password:</label>
@@ -188,16 +168,9 @@ export default function RegisterImage() {
             type="password"
             className={`form-control ${errors.confirmPassword && "is-invalid"}`}
             value={formDetails.confirmPassword}
-            onChange={(e) =>
-              setFormDetails({
-                ...formDetails,
-                confirmPassword: e.target.value,
-              })
-            }
+            onChange={(e) => setFormDetails({ ...formDetails, confirmPassword: e.target.value })}
           />
-          {errors.confirmPassword && (
-            <div className="invalid-feedback">{errors.confirmPassword}</div>
-          )}
+          {errors.confirmPassword && <div className="invalid-feedback">{errors.confirmPassword}</div>}
         </div>
         <div className="form-group">
           <label>Email:</label>
@@ -205,13 +178,9 @@ export default function RegisterImage() {
             type="email"
             className={`form-control ${errors.email && "is-invalid"}`}
             value={formDetails.email}
-            onChange={(e) =>
-              setFormDetails({ ...formDetails, email: e.target.value })
-            }
+            onChange={(e) => setFormDetails({ ...formDetails, email: e.target.value })}
           />
-          {errors.email && (
-            <div className="invalid-feedback">{errors.email}</div>
-          )}
+          {errors.email && <div className="invalid-feedback">{errors.email}</div>}
         </div>
         <div className="form-group">
           <label>Phone Number:</label>
@@ -219,41 +188,31 @@ export default function RegisterImage() {
             type="text"
             className={`form-control ${errors.phonenumber && "is-invalid"}`}
             value={formDetails.phonenumber}
-            onChange={(e) =>
-              setFormDetails({ ...formDetails, phonenumber: e.target.value })
-            }
+            onChange={(e) => setFormDetails({ ...formDetails, phonenumber: e.target.value })}
           />
-          {errors.phonenumber && (
-            <div className="invalid-feedback">{errors.phonenumber}</div>
-          )}
+          {errors.phonenumber && <div className="invalid-feedback">{errors.phonenumber}</div>}
         </div>
         <div className="form-group">
           <label>Gender:</label>
           <select
             className={`form-control ${errors.gender && "is-invalid"}`}
             value={formDetails.gender}
-            onChange={(e) =>
-              setFormDetails({ ...formDetails, gender: e.target.value })
-            }
+            onChange={(e) => setFormDetails({ ...formDetails, gender: e.target.value })}
           >
             <option value="">Select Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
           </select>
-          {errors.gender && (
-            <div className="invalid-feedback">{errors.gender}</div>
-          )}
+          {errors.gender && <div className="invalid-feedback">{errors.gender}</div>}
         </div>
-
+        
         <div className="form-group">
           <label>Preferences:</label>
           <textarea
             className="form-control"
             value={formDetails.preferences}
-            onChange={(e) =>
-              setFormDetails({ ...formDetails, preferences: e.target.value })
-            }
+            onChange={(e) => setFormDetails({ ...formDetails, preferences: e.target.value })}
           />
         </div>
         <div className="form-group">
@@ -261,9 +220,7 @@ export default function RegisterImage() {
           <textarea
             className="form-control"
             value={formDetails.allergies}
-            onChange={(e) =>
-              setFormDetails({ ...formDetails, allergies: e.target.value })
-            }
+            onChange={(e) => setFormDetails({ ...formDetails, allergies: e.target.value })}
           />
         </div>
         <div className="form-group">
@@ -272,13 +229,9 @@ export default function RegisterImage() {
             type="date"
             className={`form-control ${errors.dateOfBirth && "is-invalid"}`}
             value={formDetails.dateOfBirth}
-            onChange={(e) =>
-              setFormDetails({ ...formDetails, dateOfBirth: e.target.value })
-            }
+            onChange={(e) => setFormDetails({ ...formDetails, dateOfBirth: e.target.value })} max="2007-01-01"
           />
-          {errors.dateOfBirth && (
-            <div className="invalid-feedback">{errors.dateOfBirth}</div>
-          )}
+          {errors.dateOfBirth && <div className="invalid-feedback">{errors.dateOfBirth}</div>}
         </div>
         <div className="form-group">
           <label>Upload Image:</label>

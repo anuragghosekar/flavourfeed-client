@@ -97,7 +97,7 @@ export default function RecipeDetails() {
                 <h6 className="card-subtitle mb-2 text-muted">Ingredients:</h6>
                 <ul>
                   {recipe.recipeIngredients.map(ingredient => (
-                    <li key={ingredient.ingredientId}>{ingredient.ingredientName}</li>
+                    <li key={ingredient.ingredientId}>{ingredient.ingredientName} - {ingredient.quantity}</li>
                   ))}
                 </ul>
               </div>

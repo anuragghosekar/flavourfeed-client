@@ -43,6 +43,8 @@ h1 {
   font-weight: bold;
 }
 
+
+
 h5 {
   font-size: 2rem;
   /* line-height: .35; */
@@ -73,8 +75,4 @@ h5 {
   opacity: 0.7;
   transform: scale(1.07, 1.05) skewX(-15deg);
   background-image: var(--gradient-secondary);
-}
-
-#header--div {
-  font-size: 550%;
 }

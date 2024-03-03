@@ -1,6 +1,8 @@
+
+
 import React, { useState, useEffect } from 'react';
 import UserService from '../../Service/UserService';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate   } from 'react-router-dom';
 import "../../Style/User/EditProfile.css";
 
 export default function EditProfile() {
@@ -13,8 +15,22 @@ export default function EditProfile() {
   const [loggedIn, setLoggedIn] = useState(true);
   const userId = localStorage.getItem('userId');
   const [isadmin, setisadmin] = useState(false);
-  const Navigate = useNavigate();
-  const [selectedRecipe, setSelectedRecipe] = useState(null); // Step 1: State to store selected recipe
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   const userId = localStorage.getItem('userId');
+  //   if (!userId) {
+  //     setLoggedIn(false);
+  //   } else { 
+  //   UserService.getUserById(userId)
+  //     .then(response => {
+  //       setUser(response.data);
+  //       setEditedUser(response.data);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching user data:', error);
+  //     });
+  // }}, []);
 
   useEffect(() => {
     const userId = localStorage.getItem('userId');
@@ -40,7 +56,7 @@ export default function EditProfile() {
     }
   }, []);
 
-  if (!loggedIn) {
+  if(!loggedIn){
     return <Navigate to="/login" replace />;
   }
 
@@ -66,13 +82,13 @@ export default function EditProfile() {
     formData.append('profileImage', profileImage);
     Object.keys(editedUser).forEach((key) => {
       formData.append(key, editedUser[key]);
+      setTimeout(() => navigate("/userProfile"), 2000);
     });
 
-    UserService.updateUser(formData, userId)
+    UserService.updateUser(formData,userId)
       .then(response => {
         console.log('Profile Updated Successfully:', response.data);
         setSuccessMessage('Profile Updated Successfully.');
-        Navigate("/userProfile");
         setShowConfirmation(false);
       })
       .catch(error => {
@@ -86,60 +102,83 @@ export default function EditProfile() {
     setShowConfirmation(false);
   };
 
+  if (!loggedIn) {
+    // Redirect to login if not logged in
+    return <Navigate to="/login" replace />;
+  }
+
   if (!user) {
     return <div className="loading">Loading...</div>;
   }
 
-  // Step 2: Render selected recipe in a card format
-  const renderSelectedRecipe = () => {
-    if (selectedRecipe) {
-      return (
-        <div className="recipe-card">
-          <h3>{selectedRecipe.name}</h3>
-          <p>Calories: {selectedRecipe.calories}</p>
-        </div>
-      );
-    }
-    return null;
-  };
-
-  // Step 3: Render table with recipe name and calories
-  const renderRecipeTable = () => {
-    return (
-      <table>
-        <thead>
-          <tr>
-            <th>Recipe Name</th>
-            <th>Calories</th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* Render recipes here */}
-        </tbody>
-      </table>
+        return (
+          <div className="edit-profile">
+            <h2>Edit Profile</h2>
+            <form encType="multipart/form-data">
+              <div className="form-group">
+                <label htmlFor="firstname">First Name:</label>
+                <input type="text" name="firstname" value={editedUser.firstname} onChange={handleInputChange} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="lastname">Last Name:</label>
+                <input type="text" name="lastname" value={editedUser.lastname} onChange={handleInputChange} />
+              </div>
+              <div className="form-group">
+              <label htmlFor="profileImage">Profile Image:</label>
+              <input type="file" name="profileImage" value={editedUser.profileImage} onChange={handleImageChange} />
+              {console.log(editedUser.profileImage)}
+            </div>
+              <div className="form-group">
+                <label htmlFor="username">Username:</label>
+                <input type="text" name="username" value={editedUser.username} onChange={handleInputChange} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Password:</label>
+                <input type="password" name="password" value={editedUser.password} onChange={handleInputChange} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email:</label>
+                <input type="email" name="email" value={editedUser.email} onChange={handleInputChange} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="dateOfBirth">Date of Birth:</label>
+                <input type="date" name="dateOfBirth" value={editedUser.dateOfBirth} onChange={handleInputChange} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="address">Address:</label>
+                <input type="text" name="address" value={editedUser.address} onChange={handleInputChange} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="gender">Gender:</label>
+                <select name="gender" value={editedUser.gender} onChange={handleInputChange}>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="phonenumber">Phone Number:</label>
+                <input type="text" name="phonenumber" value={editedUser.phonenumber} onChange={handleInputChange} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="preferences">Preferences:</label>
+                <input type="text" name="preferences" value={editedUser.preferences} onChange={handleInputChange} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="allergies">Allergies:</label>
+                <input type="text" name="allergies" value={editedUser.allergies} onChange={handleInputChange} />
+              </div>
+              <button type="button" onClick={handleUpdateProfile}>Update Profile</button>
+            </form>
+            {showConfirmation && (
+              <div className="confirmation-popup">
+                <p>Do you want to update your profile?</p>
+                <button onClick={confirmUpdate}>Yes</button>
+                <button onClick={cancelUpdate}>No</button>
+              </div>
+            )}
+            {successMessage && <div className="success-message">{successMessage}</div>}
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
+          </div>
     );
-  };
-
-  return (
-    <div className="edit-profile">
-      <h2>Edit Profile</h2>
-      {renderSelectedRecipe()} {/* Render selected recipe card */}
-      {renderRecipeTable()} {/* Render recipe table */}
-      <form encType="multipart/form-data">
-        {/* Form fields */}
-        <button type="button" className="update" onClick={handleUpdateProfile}>Update Profile</button>
-      </form>
-      {/* Confirmation popup */}
-      {showConfirmation && (
-        <div className="confirmation-popup">
-          <p>Do you want to update your profile?</p>
-          <button onClick={confirmUpdate}>Yes</button>
-          <button onClick={cancelUpdate}>No</button>
-        </div>
-      )}
-      {/* Success and error messages */}
-      {successMessage && <div className="success-message">{successMessage}</div>}
-      {errorMessage && <div className="error-message">{errorMessage}</div>}
-    </div>
-  );
 }
